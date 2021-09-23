@@ -1,0 +1,39 @@
+import java.util.*;
+
+public class Main {
+
+	class contador extends Thread {
+		private volatile  boolean regulador = true;
+		private int contador = 0;
+		
+
+	public void run() {
+		while(regulador){
+ 			
+			System.out.println("contador thread: " + contador);
+			contador++;
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+		
+		public void pararRegulador(){
+			regulador = false;
+		}
+
+		public class Teste {
+			public  void main(String[] args) {
+				contador c = new contador();
+				c.start();
+
+				Scanner pararConta = new Scanner(System.in);
+				pararConta.nextLine();
+
+				c.pararRegulador();	
+			}
+		}
+	}	
+}
