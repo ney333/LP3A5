@@ -1,0 +1,24 @@
+
+public class Jantar {
+
+	public Filosofos[] filosofos = new Filosofos[5];
+	public static volatile Object[] recursos = new Object[5];
+	
+	public static void main(String[] args) {
+
+	}
+}
+
+class Filosofos extends Thread {
+	// Cada filosofo vai querer adquirir DOIS recursos!!
+	// Vai causar um deadlock;
+	public void run() {
+		
+		synchronized(Jantar.recursos[0]) {
+			
+			synchronized(Jantar.recursos[1]) {
+				// Agora posso comer!!
+			}
+		}
+	}
+}
